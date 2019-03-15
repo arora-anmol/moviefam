@@ -9,31 +9,21 @@ import recommendation_pb2_grpc
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
-class MovieRecommender(get_moviesServicer):
-    _model = None
+class MovieRecommender(recommendation_pb2_grpc.get_moviesServicer):
 
-    @classmethod
-    def get_or_create_model(cls):
-        """
-        Get KMeans model from file
-        """
-        if cls._model is None:
-            path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'model', 'user_model.pickle')
-            cls._model = joblib.load(path)
-        return cls._model
+    def get_movies(self, request, context):
+        profession = request.profession
+        age = request.age
+        genres = request.genres
+        print(profession)
+        print(age)
+        print(genres)
 
-    def PredictIrisSpecies(self, request, context):
-            model = self.__class__.get_or_create_model()
-            sepal_length = request.sepal_length
-            sepal_width = request.sepal_width
-            petal_length = request.petal_length
-            petal_width = request.petal_width
-            result = model.predict([[sepal_length, sepal_width, petal_length, petal_width]]) # need to change this function
-            return recommendation_pb2.movei_response(species=result[0])
+        return recommendation_pb2.movie_response(movies=["123", "2313"] , ratings = [3, 4] )
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    iris_pb2_grpc.add_get_moviesServicer_to_server(MovieRecommender(), server)
+    recommendation_pb2_grpc.add_get_moviesServicer_to_server(MovieRecommender(), server)
     server.add_insecure_port('[::]:50052')
     server.start()
     try:

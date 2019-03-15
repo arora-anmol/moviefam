@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='recommendation',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x14recommendation.proto\x12\x0erecommendation\"@\n\rmovie_request\x12\x0b\n\x03\x61ge\x18\x01 \x01(\x01\x12\x12\n\nprofession\x18\x02 \x01(\t\x12\x0e\n\x06genres\x18\x03 \x03(\t\"1\n\x0emovie_response\x12\x0e\n\x06movies\x18\x01 \x03(\t\x12\x0f\n\x07ratings\x18\x02 \x03(\x05\x32[\n\nget_movies\x12M\n\nget_movies\x12\x1d.recommendation.movie_request\x1a\x1e.recommendation.movie_response\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x14recommendation.proto\x12\x0erecommendation\"@\n\rmovie_request\x12\x0b\n\x03\x61ge\x18\x01 \x01(\x01\x12\x12\n\nprofession\x18\x02 \x01(\t\x12\x0e\n\x06genres\x18\x03 \x03(\t\"1\n\x0emovie_response\x12\x0e\n\x06movies\x18\x01 \x03(\t\x12\x0f\n\x07ratings\x18\x02 \x03(\x02\x32[\n\nget_movies\x12M\n\nget_movies\x12\x1d.recommendation.movie_request\x1a\x1e.recommendation.movie_response\"\x00\x62\x06proto3')
 )
 
 
@@ -86,7 +86,7 @@ _MOVIE_RESPONSE = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='ratings', full_name='recommendation.movie_response.ratings', index=1,
-      number=2, type=5, cpp_type=1, label=3,
+      number=2, type=2, cpp_type=6, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
