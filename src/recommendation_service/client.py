@@ -10,6 +10,7 @@ def run(host, port):
     request = recommendation_pb2.movie_request(
         age = 20,
         profession = "student",
+        gender = 'M', 
         genres = ['comedy', 'horror']
     )
     response = stub.get_movies(request)
@@ -18,3 +19,4 @@ def run(host, port):
 
 if __name__ == '__main__':
     run('localhost', 50052)
+

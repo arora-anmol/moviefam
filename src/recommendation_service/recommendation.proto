@@ -9,7 +9,8 @@ service get_movies{
 message movie_request{
     double age = 1;
     string profession = 2;
-    repeated string genres = 3;
+    string gender = 3;
+    repeated string genres = 4;
 }
 
 message movie_response{
