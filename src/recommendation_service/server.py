@@ -31,7 +31,7 @@ class MovieRecommender(recommendation_pb2_grpc.get_moviesServicer):
 
 
     def get_movies(self, request, context):
-        self.__class__.in_memory_cluster_data()
+        self.__class__.in_memory_cluster_daqta()
         self.profession = request.profession
         self.age = request.age
         self.genres = request.genres
@@ -46,13 +46,12 @@ class MovieRecommender(recommendation_pb2_grpc.get_moviesServicer):
     
     def __get_recommendations(self):
         clustering_model = self.__class__.get_or_create_model()
-        user_vector = self.create_user_vector()
-        user_cluster = clustering_model.predict(user_vector) # need to add stuff here
-
-        top_movies = []
+        self.user_vector = self.create_user_vector()
+        user_cluster = clustering_model.predict(self.user_vector)[0] # need to add stuff here
+        top_movies = self.__get_movies_after_similarity(user_cluster)
     
-
-
+    def __get_movies_after_similarity(self, cluster):
+        movies_df = pd.DataFrame(self.__class__._movies_data[cluster])
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
