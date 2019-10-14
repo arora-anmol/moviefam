@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package recommendation;
+
+service get_movies{
+    rpc get_movies(movie_request) returns (movie_response) {}
+}
+
+message movie_request{
+    double age = 1;
+    string profession = 2;
+    string gender = 3;
+    repeated string genres = 4;
+}
+
+message movie_response{
+    repeated string movies=1;
+    repeated float ratings=2;
+}
